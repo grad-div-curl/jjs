@@ -1,0 +1,17 @@
+SET #n1 1
+SET #n2 0
+SET #n3 0
+
+SET #i 10
+
+SET #tmp #n1
+ADD #tmp #n2
+SET #n3 #n2
+SET #n2 #n1
+SET #n1 #tmp
+
+SUB #i 1
+CMP #i 0
+JG 4
+
+SET #fib_result #n1
