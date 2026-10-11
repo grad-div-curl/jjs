@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <string.h>
 #include "vector.h"
-#include "jjasm.h"
+#include "jjsasm.h"
 
 int main(int argc, char **argv){
 
