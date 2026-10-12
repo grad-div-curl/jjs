@@ -109,7 +109,14 @@ void jjsasm_print_token_t(jjsasm_token_t token_t){
             jjsasm_print_instr_t(*(jjsasm_instr_t *)token_t.data);
             break;
         case JJSASM_TOKEN_COMMENT:
-            
+            printf((char *)token_t.data);
+            break;
+        case JJSASM_TOKEN_LABEL:
+            printf((char *)token_t.data);
+            break;
+        case JJSASM_TOKEN_BAD:
+            printf("%.16x", (uintptr_t)token_t.data);
+            break;
     }
 
     putchar(']');
