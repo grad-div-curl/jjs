@@ -21,13 +21,13 @@ Types
         jjsasm_instr_t
         jjsasm_token_t
 Variables
-    const int jjsasm_argc[]
-    const char *jjsasm_type_strs
-    const char *jjsasm_instr_strs
-    const char *jjsasm_token_strs
+    static const int jjsasm_argc[]
+    static const char *jjsasm_type_strs
+    static const char *jjsasm_instr_strs
+    static const char *jjsasm_token_strs
 
-    const size_t jjsasm_argc_size
-    const size_t jjsasm_instr_strs_size
+    static const size_t jjsasm_argc_size
+    static const size_t jjsasm_instr_strs_size
 Functions
     Helpers
         static uint64_t ll_read_u64(long long ll);
@@ -37,9 +37,9 @@ Functions
     Conversion to jjsasm types
         size_t jjsasm_argc_of(jjsasm_instr_e instruction);
     String conversion and prints
-        char *jjsasm_type_e_to_a(jjsasm_type_e type_e);
-        char *jjsasm_instr_e_to_a(jjsasm_instr_e instr_e);
-        char *jjsasm_token_e_to_a(jjsasm_token_e token_e);
+        const char *jjsasm_type_e_to_a(jjsasm_type_e type_e);
+        const char *jjsasm_instr_e_to_a(jjsasm_instr_e instr_e);
+        const char *jjsasm_token_e_to_a(jjsasm_token_e token_e);
 
         void jjsasm_print_arg_t(jjsasm_arg_t arg_t);
         void jjsasm_print_instr_t(jjsasm_instr_t instr_t);
@@ -52,16 +52,18 @@ Functions
 */
 
 #define JJSASM_TAG_CHAR '#'
+#define JJSASM_STR_WHITESPACE "\n\r\t "
+#define JJSASM_STR_LINEBREAK "\n\r"
 
-const int jjsasm_argc[] = {0, 2, 2, 2, 2, 1, 1, 1, 1, 1};
-const char *jjsasm_type_strs[] = {"UNKNOWN", "INTEGER", "DECIMAL", "STRING", "TAG", "BAD"};
-const char *jjsasm_instr_strs[] = {"NOP", "MOV", "ADD", "SUB", "CMP", "JMP", "JE", "JL", "JG", "SKL", "BAD"};
-const char *jjsasm_token_strs[] = {"UNKNOWN", "INSTRUCTION", "COMMENT", "LABEL", "BAD"};
+static const int jjsasm_argc[] = {0, 2, 2, 2, 2, 1, 1, 1, 1, 1};
+static const char *jjsasm_type_strs[] = {"UNKNOWN", "INTEGER", "DECIMAL", "STRING", "TAG", "BAD"};
+static const char *jjsasm_instr_strs[] = {"NOP", "MOV", "ADD", "SUB", "CMP", "JMP", "JE", "JL", "JG", "SKL", "BAD"};
+static const char *jjsasm_token_strs[] = {"UNKNOWN", "INSTRUCTION", "COMMENT", "LABEL", "BAD"};
 
-const size_t jjsasm_argc_size = sizeof(jjsasm_argc) / sizeof(int); // resolved at compile-time! as is the others
-const size_t jjsasm_instr_strs_size = sizeof(jjsasm_instr_strs_size) / sizeof(char *);
-const size_t jjsasm_type_strs_size = sizeof(jjsasm_type_strs_size) / sizeof(char *);
-const size_t jjsasm_token_strs_size = sizeof(jjsasm_token_strs_size) / sizeof(char *);
+static const size_t jjsasm_argc_size = sizeof(jjsasm_argc) / sizeof(int); // resolved at compile-time! as is the others
+static const size_t jjsasm_instr_strs_size = sizeof(jjsasm_instr_strs_size) / sizeof(char *);
+static const size_t jjsasm_type_strs_size = sizeof(jjsasm_type_strs_size) / sizeof(char *);
+static const size_t jjsasm_token_strs_size = sizeof(jjsasm_token_strs_size) / sizeof(char *);
 
 typedef enum jjsasm_type_e {
     JJSASM_TYPE_UNKNOWN,
@@ -118,9 +120,9 @@ static double u64_readas_d(uint64_t u64);
 
 size_t jjsasm_argc_of(jjsasm_instr_e instr_e);
 
-char *jjsasm_type_e_to_a(jjsasm_type_e type_e);
-char *jjsasm_instr_e_to_a(jjsasm_instr_e instr_e);
-char *jjsasm_token_e_to_a(jjsasm_token_e token_e);
+const char *jjsasm_type_e_to_a(jjsasm_type_e type_e);
+const char *jjsasm_instr_e_to_a(jjsasm_instr_e instr_e);
+const char *jjsasm_token_e_to_a(jjsasm_token_e token_e);
 
 void jjsasm_print_arg_t(jjsasm_arg_t arg_t);
 void jjsasm_print_instr_t(jjsasm_instr_t instr_t);

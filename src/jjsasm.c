@@ -27,6 +27,10 @@ Parsing strings
 
 */
 
+
+// evil floating point bit level hacking
+// what the fuck?
+
 static uint64_t ll_readas_u64(long long ll){
     return *(uint64_t *)&ll;
 }
@@ -45,17 +49,17 @@ size_t jjsasm_argc_of(jjsasm_instr_e instr_e){
     return jjsasm_argc[(int)instr_e];
 }
 
-char *jjsasm_type_e_to_a(jjsasm_type_e type_e){
+const char *jjsasm_type_e_to_a(jjsasm_type_e type_e){
     if (type_e >= jjsasm_type_strs_size) return NULL;
     return jjsasm_type_strs[(int)type_e];
 }
 
-char *jjsasm_instr_e_to_a(jjsasm_instr_e instr_e){
+const char *jjsasm_instr_e_to_a(jjsasm_instr_e instr_e){
     if (instr_e >= jjsasm_instr_strs_size) return NULL;
     return jjsasm_instr_strs[(int)instr_e];
 }
 
-char *jjsasm_token_e_to_a(jjsasm_token_e token_e){
+const char *jjsasm_token_e_to_a(jjsasm_token_e token_e){
     if (token_e >= jjsasm_token_strs_size) return NULL;
     return jjsasm_token_strs[(int)token_e];
 }
@@ -135,3 +139,23 @@ jjsasm_instr_e jjsasm_a_to_instr_e(char *str){
     if (strcmp(str, "SKL") == 0) return JJSASM_INSTR_SKL;
     return JJSASM_INSTR_BAD;
 }
+
+jjsasm_type_e jjsasm_parsenum(char *str){
+    int i = 0;
+    int dec_used = 0;
+
+    while (strchr(JJSASM_STR_WHITESPACE, str[i]) == NULL){
+        if (str[i] == '.'){
+            if (dec_used == 1) return JJSASM_TYPE_UNKNOWN;
+            dec_used = 1;
+        }
+        else if ('0' <= str[i] && str[i] <= '9'){
+            continue;
+        }
+        else {
+            return JJSASM_TYPE_UNKNOWN;
+            // wont add exponent support, maybe if i build a higher-level compiler into JJSASM?
+        }
+    }
+}
+
