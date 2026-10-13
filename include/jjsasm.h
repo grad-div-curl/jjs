@@ -130,6 +130,6 @@ void jjsasm_print_token_t(jjsasm_token_t token_t);
 
 jjsasm_instr_e jjsasm_a_to_instr_e(char *str);
 jjsasm_type_e jjsasm_parsenum(char *str);
-vector_t *jjsasm_tokenize(char *str);
+vector_t *jjsasm_tokenize(char *str); // vector_t elements are of type jjsasm_token_t
 
-#endif
+#endif /* JJSASM_H */

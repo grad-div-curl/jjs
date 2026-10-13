@@ -159,3 +159,20 @@ jjsasm_type_e jjsasm_parsenum(char *str){
     }
 }
 
+
+vector_t *jjsasm_tokenize(char *str){
+    if (str == NULL) return NULL; // note to self: strtok(NULL, {delim}) without 1st call is bad
+    str = strtok(str, JJSASM_STR_LINEBREAK);
+
+    vector_t *vec = vector_new(sizeof(jjsasm_token_t), 64);
+
+    while (str != NULL){
+        size_t len = strlen(str);
+    }
+
+
+
+    TOKENIZE_FAILURE: // this is a goto
+    vector_free(vec);
+    return EXIT_FAILURE;
+}
