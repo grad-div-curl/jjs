@@ -298,5 +298,5 @@ vector_t *jjsasm_tokenize(char *str){
         }
     }
     vector_free(vec);
-    return EXIT_FAILURE;
+    return NULL;
 }
