@@ -1,3 +1,5 @@
+// Code by graddivcurl
+
 #ifndef JJSASM_H
 #define JJSASM_H
 
@@ -45,14 +47,15 @@ Functions
         void jjsasm_print_instr_t(jjsasm_instr_t instr_t);
         void jjasm_print_token_t(jjsasm_token_t token_t);
     Parsing strings
-        jjsasm_instr_e jjsasm_a_to_instr_e(char *str);
-        jjsasm_type_e jjsasm_parsenum(char *str);
+        jjsasm_instr_e jjsasm_a_to_instr_e(const char *str);
+        jjsasm_instr_e jjsasm_a_to_instr_e_N(const char *str);
+        jjsasm_type_e jjsasm_parsenum(const char *str);
         vector_t *jjsasm_tokenize(char *str);
 
 */
 
 #define JJSASM_TAG_CHAR '#'
-#define JJSASM_STR_WHITESPACE "\n\r\t "
+#define JJSASM_STR_WHITESPACE "\n\r\t\0 "
 #define JJSASM_STR_LINEBREAK "\n\r"
 
 static const int jjsasm_argc[] = {0, 2, 2, 2, 2, 1, 1, 1, 1, 1};
@@ -127,9 +130,11 @@ const char *jjsasm_token_e_to_a(jjsasm_token_e token_e);
 void jjsasm_print_arg_t(jjsasm_arg_t arg_t);
 void jjsasm_print_instr_t(jjsasm_instr_t instr_t);
 void jjsasm_print_token_t(jjsasm_token_t token_t);
+void jjsasm_print_token_vector(vector_t *vec);
 
-jjsasm_instr_e jjsasm_a_to_instr_e(char *str);
-jjsasm_type_e jjsasm_parsenum(char *str);
+jjsasm_instr_e jjsasm_a_to_instr_e(const char *str);
+jjsasm_instr_e jjsasm_a_to_instr_e_N(const char *str);
+jjsasm_type_e jjsasm_parsenum(const char *str);
 vector_t *jjsasm_tokenize(char *str); // vector_t elements are of type jjsasm_token_t
 
-#endif /* JJSASM_H */
+#endif // JJSASM_H
