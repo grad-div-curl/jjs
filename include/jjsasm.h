@@ -63,10 +63,10 @@ static const char *jjsasm_type_strs[] = {"UNKNOWN", "INTEGER", "DECIMAL", "STRIN
 static const char *jjsasm_instr_strs[] = {"NOP", "MOV", "ADD", "SUB", "CMP", "JMP", "JE", "JL", "JG", "SKL", "BAD"};
 static const char *jjsasm_token_strs[] = {"UNKNOWN", "INSTRUCTION", "COMMENT", "LABEL", "BAD"};
 
-static const size_t jjsasm_argc_size = sizeof(jjsasm_argc) / sizeof(int); // resolved at compile-time! as is the others
-static const size_t jjsasm_instr_strs_size = sizeof(jjsasm_instr_strs_size) / sizeof(char *);
-static const size_t jjsasm_type_strs_size = sizeof(jjsasm_type_strs_size) / sizeof(char *);
-static const size_t jjsasm_token_strs_size = sizeof(jjsasm_token_strs_size) / sizeof(char *);
+static const size_t jjsasm_argc_size = sizeof(jjsasm_argc) / sizeof(int); // resolved at compile-time! like the others
+static const size_t jjsasm_type_strs_size = sizeof(jjsasm_type_strs) / sizeof(char *);
+static const size_t jjsasm_instr_strs_size = sizeof(jjsasm_instr_strs) / sizeof(char *);
+static const size_t jjsasm_token_strs_size = sizeof(jjsasm_token_strs) / sizeof(char *);
 
 typedef enum jjsasm_type_e {
     JJSASM_TYPE_UNKNOWN,
