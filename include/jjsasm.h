@@ -46,6 +46,7 @@ Functions
         void jjsasm_print_arg_t(jjsasm_arg_t arg_t);
         void jjsasm_print_instr_t(jjsasm_instr_t instr_t);
         void jjasm_print_token_t(jjsasm_token_t token_t);
+        void jjsasm_print_token_vector(vector_t *vec);
     Parsing strings
         jjsasm_instr_e jjsasm_a_to_instr_e(const char *str);
         jjsasm_instr_e jjsasm_a_to_instr_e_N(const char *str);
@@ -104,11 +105,10 @@ typedef struct jjsasm_arg_t {
     uint64_t data;
 } jjsasm_arg_t;
 
-// if i decide to set `argv` to a vector_t, it contains jjs_arg_t's
 typedef struct jjsasm_instr_t {
     jjsasm_instr_e instr_e;
-    jjsasm_arg_t *argv;
     uint8_t argc;
+    jjsasm_arg_t *argv;
 } jjsasm_instr_t;
 
 typedef struct jjsasm_token_t {

@@ -64,7 +64,7 @@ const char *jjsasm_token_e_to_a(jjsasm_token_e token_e){
 }
 
 void jjsasm_print_arg_t(jjsasm_arg_t arg_t){
-    printf("(%s : ", jjsasm_instr_e_to_a(arg_t.type_e));
+    printf("(%s : ", jjsasm_type_e_to_a(arg_t.type_e));
 
     switch (arg_t.type_e){
         case JJSASM_TYPE_UNKNOWN:
@@ -122,7 +122,7 @@ void jjsasm_print_token_t(jjsasm_token_t token_t){
 
     putchar(']');
 }
-void jjsasm_print_token_vec(vector_t *vec){
+void jjsasm_print_token_vector(vector_t *vec){
     for (int i = 0; i < vec->size; i++){
         jjsasm_print_token_t(*(jjsasm_token_t *)vector_get(vec, i));
         putchar('\n');
@@ -226,8 +226,9 @@ vector_t *jjsasm_tokenize(char *str){
             // Find next argument
             while (strchr(JJSASM_STR_WHITESPACE, *str_token) == NULL){
                 str_token++;
+                // If a null is encountered, it probably expected more arguments
                 if (*str_token == '\0'){
-                    perror("Tokenize encountered null terminator while parsing instruction arguments");
+                    perror("Tokenize encountered null terminator while parsing instruction arguments; Not enough arguments?");
                     goto TOKENIZE_FAILURE;
                 }
             }
@@ -300,3 +301,4 @@ vector_t *jjsasm_tokenize(char *str){
     vector_free(vec);
     return NULL;
 }
+// end

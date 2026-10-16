@@ -6,7 +6,8 @@
 #include "jjsasm.h"
 
 int main(int argc, char **argv){
-    // does nothing rn lmao, feel free to clone this and try stuff out
+    char str[] = "ADD 1 2";
+    jjsasm_print_token_vector(jjsasm_tokenize(str));
     
     return EXIT_SUCCESS;
 }
