@@ -56,7 +56,7 @@ Functions
 */
 
 #define JJSASM_TAG_CHAR '#'
-#define JJSASM_STR_WHITESPACE "\n\r\t\0 "
+#define JJSASM_STR_WHITESPACE "\n\r\t "
 #define JJSASM_STR_LINEBREAK "\n\r"
 
 static const int jjsasm_argc[] = {0, 2, 2, 2, 2, 1, 1, 1, 1, 1};

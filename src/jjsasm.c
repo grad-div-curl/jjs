@@ -177,12 +177,12 @@ vector_t *jjsasm_tokenize(char *str){
     if (str == NULL) {
         perror("Tokenize argument \"str\" expected valid address for a char *, got NULL");
         return NULL;
-    }// note to self: strtok(NULL, {delim}) without 1st call is bad
+    } // note to self: strtok(NULL, {delim}) without 1st call is bad
 
 
     // Initialize char *str_token for tracking lines in const char *str using strtok
-    // vec handles elements of type jjsasm_token_t
     char *str_token  = strtok(str, JJSASM_STR_LINEBREAK);
+    // vec handles elements of type jjsasm_token_t
     vector_t *vec = vector_new(sizeof(jjsasm_token_t), 64);
 
     while (str_token != NULL){
@@ -232,6 +232,7 @@ vector_t *jjsasm_tokenize(char *str){
                     goto TOKENIZE_FAILURE;
                 }
             }
+            str_token++;
 
             // Parse string of argument as a jjsasm_type_e with accompanying data
 
@@ -284,8 +285,10 @@ vector_t *jjsasm_tokenize(char *str){
         // May have jumped to here from handling of
         // comments and labels above the instruction stuff
         NEXT_TOKEN: // goto
+        jjsasm_print_token_t(token_t);
+        putchar('\n');
         vector_push(vec, (void *)&token_t);
-        str = strtok(NULL, JJSASM_STR_LINEBREAK);
+        str_token = strtok(NULL, JJSASM_STR_LINEBREAK);
     }
 
 
